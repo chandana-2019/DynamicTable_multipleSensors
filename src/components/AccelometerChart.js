@@ -145,9 +145,6 @@ class Accelometer_Chart extends Component {
   //console.log("received data:", this.props);
 
 
-
-
-
   render() {
     return (
 

@@ -77,7 +77,7 @@ class DevTable extends Component {
 
     componentDidMount() {
         this.DBquery();
-        setInterval(this.DBquery, 5000); // runs every 5 seconds.
+        setInterval(this.DBquery, 1000); // runs every 1 seconds.
 
     }
 
@@ -116,14 +116,11 @@ class DevTable extends Component {
 
             })
 
-
-            //console.log("check the data with this query output:" + this.state.repos.map(d => d.device_name));
             // console.table("check the data with this query output:" + this.state.repos.map(d => d.data.GX));
 
         } catch (err) {
             console.log('Something is not right in second query , Probaly no data sent');
             console.error(err);
-            //console.log('whats inside the parameter passed ' + this.props.raws);
         }
     }
 
@@ -189,34 +186,21 @@ class DevTable extends Component {
                                     </div>
                                 </StyledTableCell>
                                 <StyledTableCell align="center"><b>Received at</b></StyledTableCell>
-                                <StyledTableCell align="center"><b>Data1</b></StyledTableCell>
-                                <StyledTableCell align="center"><b>Device Data</b></StyledTableCell>
+                                <StyledTableCell align="center"><b>Data</b></StyledTableCell>
+
 
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody >
                             {
                                 this.state.repos.map(row => (
 
-                                    <StyledTableRow key={row.dev_eui} >
+                                    <StyledTableRow key={this.handleChange} >
 
                                         <StyledTableCell component="th" scope="row" align="center"> {row.device_name}           </StyledTableCell>
                                         <StyledTableCell align="center"> {row.dev_eui} </StyledTableCell>
                                         <StyledTableCell align="center"> {row.received_at.split(' ').slice(0, 5).join(' ')} </StyledTableCell>
                                         <StyledTableCell align="left"> {JSON.stringify(row.data)} </StyledTableCell>
-
-                                        <StyledTableCell alignContents="center">
-
-                                            <li> Device Time : {row.data.time} </li>
-                                            <li>Temp:  {row.data.temp}  </li>
-                                            <li> GX :  {row.data.GX} </li>
-                                            <li> GY :  {row.data.GY}  </li>
-                                            <li> GZ :  {row.data.GZ} </li>
-                                            <li> AX : {row.data.AX}  </li>
-                                            <li> AY : {row.data.AY}  </li>
-                                            <li> AZ :  {row.data.AZ}  </li>
-                                            <li>__typename : {row.data.__typename}  </li>
-                                        </StyledTableCell>
                                     </StyledTableRow>
                                 )
                                 )
